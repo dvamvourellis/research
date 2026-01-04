@@ -140,6 +140,30 @@ research/
 └── requirements.txt          # Python dependencies
 ```
 
+## Data Sources
+
+### AI Trends (Web Scraping)
+- **Epoch AI Blog**: Research articles on AI compute trends, training costs, and scaling
+- **Dwarkesh Patel's Blog**: In-depth analysis of AI infrastructure buildout and progress
+- **AI-2027 Forecasting**: Forward-looking AI development scenarios
+
+**Note**: For Epoch AI, the system fetches their blog/research section. Since these sites publish new content regularly, you can customize the URLs in `src/data_fetcher/fetcher.py` to point to specific articles or add additional sources.
+
+### Market Data (Yahoo Finance via yfinance)
+All stock fundamentals, prices, news, and analyst data come from **Yahoo Finance**:
+- **Free and reliable** for basic fundamental analysis
+- **15-20 minute delays** on some real-time data
+- **Limited news coverage** compared to premium services (Bloomberg, FactSet)
+- **Aggregated analyst recommendations** from multiple sources
+
+### AI Analysis (Anthropic Claude)
+Claude AI (Sonnet 4.5) is used for:
+- Extracting trends and insights from fetched content
+- Generating investment themes from trend analysis
+- Identifying relevant stock tickers for each theme
+- Scoring and validating ticker recommendations
+- Optimizing portfolio allocations
+
 ## How It Works
 
 ### 1. Data Collection
@@ -183,11 +207,14 @@ Tickers are validated using yfinance to ensure they're real and tradeable.
 
 ### 5. Validation
 
-Each ticker is validated against:
-- **Fundamentals**: P/E ratio, growth rates, profit margins, debt levels
-- **Market Data**: Price momentum, analyst recommendations
-- **Recent News**: Headlines and sentiment
-- **Theme Alignment**: How well it matches the investment themes
+Each ticker is validated using data from **Yahoo Finance** (via yfinance library):
+- **Fundamentals**: P/E ratio, revenue/earnings growth, profit margins, debt-to-equity
+- **Market Data**: Price momentum, 52-week ranges, trading volume
+- **Analyst Recommendations**: Aggregated analyst ratings and price targets
+- **Recent News**: Headlines aggregated by Yahoo Finance (limited coverage)
+- **Theme Alignment**: Claude AI analysis of fit with investment themes
+
+**Note**: Yahoo Finance data is free but may have 15-20 minute delays and limited news coverage compared to premium services like Bloomberg or FactSet.
 
 Claude AI scores each ticker on:
 - Theme alignment (1-10)

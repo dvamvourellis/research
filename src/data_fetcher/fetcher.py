@@ -18,8 +18,20 @@ class AITrendsFetcher:
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }
+        # NOTE: These sources are specific URLs that should contain substantive AI trend analysis.
+        # For sites with multiple articles, you should update these URLs to point to specific
+        # research pieces or aggregate pages (e.g., blog sections, research hubs).
+        #
+        # Epoch AI options:
+        #   - Blog/Research: https://epoch.ai/blog
+        #   - Specific reports on compute trends, training costs, etc.
+        #   - Their published research papers and analysis
+        #
+        # You can add multiple Epoch AI sources by adding entries like:
+        #   'epoch_ai_blog': 'https://epoch.ai/blog',
+        #   'epoch_ai_compute': 'https://epoch.ai/[specific-compute-article]',
         self.sources = {
-            'epoch_ai': 'https://epoch.ai/',
+            'epoch_ai_blog': 'https://epoch.ai/blog',  # Epoch AI research blog
             'dwarkesh_buildout': 'https://www.dwarkesh.com/p/thoughts-on-the-ai-buildout',
             'dwarkesh_progress': 'https://www.dwarkesh.com/p/thoughts-on-ai-progress-dec-2025',
             'ai_2027': 'https://ai-2027.com/'

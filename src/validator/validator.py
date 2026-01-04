@@ -73,7 +73,16 @@ class TickerValidator:
 
     def _validate_single_ticker(self, symbol: str, themes: Dict) -> Optional[Dict]:
         """
-        Validate a single ticker.
+        Validate a single ticker using Yahoo Finance data.
+
+        Data Sources (via yfinance library):
+        - Fundamentals: P/E, revenue growth, margins, debt ratios from Yahoo Finance
+        - News: Recent headlines aggregated by Yahoo Finance
+        - Analyst Recs: Aggregated analyst recommendations and price targets
+        - Price Data: Historical prices, 52-week ranges, trading volume
+
+        Note: Yahoo Finance data is free but may have 15-20 minute delays
+        and limited news coverage compared to premium services.
 
         Args:
             symbol: Stock ticker symbol
